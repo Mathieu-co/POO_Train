@@ -22,11 +22,14 @@ class Livre:
 
     def afficher_infos(self) -> str:
         """
-        TODO:
         - Retourner une chaîne lisible avec les infos du livre
         - Ajouter l'état (disponible / emprunté)
         """
-        pass
+        if self.disponible:
+            etat = "Disponible"
+        else:
+            etat = "Emprunté"
+        return f"Titre : {self.titre}\nAuteur : {self.auteur}\nISBN : {self.isbn}\nÉtat : {etat}"
 
 
 class Membre:
@@ -111,8 +114,8 @@ def main() -> None:
     3) Ajouter les livres à la bibliothèque
     4) Tester emprunt puis retour
     """
-    # TODO: Instancier les objets et tester tes méthodes ici.
-    pass
+    livre1 = Livre("1984", "George Orwell", "12345")
+    print(livre1.afficher_infos())
 
 
 if __name__ == "__main__":
