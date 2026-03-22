@@ -22,11 +22,12 @@ class Livre:
 
     def afficher_infos(self) -> str:
         """
-        - Retourner une chaîne lisible avec les infos du livre
-        - Ajouter l'état (disponible / emprunté)
+        - Retourne une chaîne lisible avec les infos du livre
+        - Ajoute l'état (disponible / emprunté)
         """
         if self.disponible:
             etat = "Disponible"
+
         else:
             etat = "Emprunté"
         return f"Titre : {self.titre}\nAuteur : {self.auteur}\nISBN : {self.isbn}\nÉtat : {etat}"
@@ -44,13 +45,21 @@ class Membre:
 
     def emprunter(self, livre: Livre) -> None:
         """
-        TODO:
-        - Vérifier si le livre est disponible
-        - L'ajouter à livres_empruntes
-        - Mettre livre.disponible à False
-        - Gérer le cas où le livre est déjà emprunté
+        - Vérification si le livre est disponible
+        - On ajoute à livres_empruntes
+        - Disponibilité du livre change
+        - Le cas où le livre est déjà emprunté est géré
         """
-        pass
+        if livre in self.livres_empruntes:
+            print(f"Vous avez déjà emprunté le livre {livre.titre}.")
+            return
+
+        if not livre.disponible:
+            print(f"Le livre {livre.titre} est indisponible.")
+            return
+
+        self.livres_empruntes.append(livre)
+        livre.disponible = False
 
     def rendre(self, livre: Livre) -> None:
         """
@@ -60,7 +69,12 @@ class Membre:
         - Mettre livre.disponible à True
         - Gérer le cas où le livre n'est pas dans la liste
         """
-        pass
+        if livre not in self.livres_empruntes:
+            print(f"Vous n'avez pas emprunté le livre {livre.titre}")
+            return
+
+        self.livres_empruntes.remove(livre)
+        livre.disponible = True
 
 
 class Bibliotheque:
