@@ -63,7 +63,6 @@ class Membre:
 
     def rendre(self, livre: Livre) -> None:
         """
-        TODO:
         - Vérifier que le membre a bien ce livre
         - Le retirer de livres_empruntes
         - Mettre livre.disponible à True
@@ -129,7 +128,55 @@ def main() -> None:
     4) Tester emprunt puis retour
     """
     livre1 = Livre("1984", "George Orwell", "12345")
+    livre2 = Livre("Dune", "Frank Herbert", "67890")
+
+    membre1 = Membre(1, "Alice")
+    membre2 = Membre(2, "Bob")
+
+    print("=== État initial ===")
     print(livre1.afficher_infos())
+    print()
+    print(livre2.afficher_infos())
+    print()
+
+    print("=== Emprunt par Alice ===")
+    membre1.emprunter(livre1)
+    print(livre1.afficher_infos())
+    print(
+        "Livres empruntés par Alice :",
+        [livre.titre for livre in membre1.livres_empruntes],
+    )
+    print()
+
+    print("=== Alice emprunte le même livre ===")
+    membre1.emprunter(livre1)
+    print(livre1.afficher_infos())
+    print()
+
+    print("=== Bob emprunt un autre livre ===")
+    membre2.emprunter(livre2)
+    print(livre2.afficher_infos())
+    print(
+        "Livres emprunté par Bob :", [livre.titre for livre in membre2.livres_empruntes]
+    )
+    print()
+
+    print("=== Alice rend son livre ===")
+    membre1.rendre(livre1)
+    print(livre1.afficher_infos())
+    print(
+        "Livres empruntés par Alice :",
+        [livre.titre for livre in membre1.livres_empruntes],
+    )
+    print()
+
+    print("=== Alice essaie encore de rendre le même livre ===")
+    membre1.rendre(livre1)
+    print()
+
+    print("=== Bob essaie de rendre le livre qu'il n'a pas ===")
+    membre2.rendre(livre1)
+    print()
 
 
 if __name__ == "__main__":
