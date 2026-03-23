@@ -1,4 +1,4 @@
-# Exercice POO — Gestion de bibliothèque (Python)
+# Exercice POO — Gestion d'une bibliothèque (Python)
 
 Petit projet d'entraînement pour pratiquer la **programmation orientée objet (POO)** en Python à partir d'un cas concret : la gestion d'une bibliothèque.
 
