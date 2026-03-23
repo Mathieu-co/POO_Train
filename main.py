@@ -81,24 +81,42 @@ class Bibliotheque:
 
     def __init__(self, nom: str) -> None:
         self.nom = nom
-        self.catalogue = []  # Liste de Livre
-        self.membres = []  # Liste de Membre
+        self.catalogue: list[Livre] = []  # Liste de Livre
+        self.membres: list[Membre] = []  # Liste de Membre
 
     def ajouter_livre(self, livre: Livre) -> None:
         """
-        TODO:
-        - Ajouter le livre au catalogue
-        - Option bonus: éviter les doublons d'ISBN
+        - Ajout d'un livre au catalogue
+        - On évite les doublons d'ISBN
+        - On vérifie que l'objet est bien un Livre
         """
-        pass
+        if not isinstance(livre, Livre):
+            raise TypeError("livre doit être une instance de Livre")
+
+        for livre_existant in self.catalogue:
+            if livre_existant.isbn == livre.isbn:
+                raise ValueError(
+                    f"Le livre {livre.titre}  ISBN {livre.isbn} est déjà présent dans la bibliothèque"
+                )
+
+        self.catalogue.append(livre)
 
     def inscrire_membre(self, membre: Membre) -> None:
         """
-        TODO:
-        - Ajouter le membre à la liste des membres
-        - Option bonus: empêcher deux identifiants identiques
+        - Ajout d'un membre à la liste des membres
+        - On empèche deux identifiants identiques
+        - On vérifie que l'objet est bien un Membre
         """
-        pass
+        if not isinstance(membre, Membre):
+            raise TypeError("membre doit être une instance de Membre")
+
+        for membre_existant in self.membres:
+            if membre_existant.identifiant == membre.identifiant:
+                raise ValueError(
+                    f"Le membre {membre.nom} numéro {membre.identifiant} est déjà inscrit."
+                )
+
+        self.membres.append(membre)
 
     def trouver_livre_par_isbn(self, isbn: str) -> Livre | None:
         """
