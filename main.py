@@ -134,16 +134,17 @@ class Bibliotheque:
 
     def afficher_catalogue(self) -> None:
         """
-        TODO:
         - Afficher les informations de chaque livre
         - Utiliser la méthode afficher_infos de Livre
         """
-        pass
+        for livre in self.catalogue:
+            print("-" * 30)
+            print(livre.afficher_infos(), "\n")
 
 
 def main() -> None:
     """
-    Zone de test plus complète.
+    Zone de test
 
     L'objectif est de vérifier:
     - les créations d'objets
@@ -152,6 +153,7 @@ def main() -> None:
     - les erreurs prévues
     - les emprunts et les retours
     """
+
     def afficher_section(titre: str) -> None:
         print(f"\n=== {titre} ===")
 
@@ -186,7 +188,10 @@ def main() -> None:
     membre_doublon_id = Membre(1, "Charlie")
 
     afficher_section("Création des objets")
-    verifier(bibliotheque.nom == "Bibliothèque municipale", "le nom de la bibliothèque est correct")
+    verifier(
+        bibliotheque.nom == "Bibliothèque municipale",
+        "le nom de la bibliothèque est correct",
+    )
     verifier(livre1.disponible, "un nouveau livre est disponible")
     verifier(membre1.livres_empruntes == [], "un nouveau membre ne possède aucun livre")
 
@@ -196,7 +201,8 @@ def main() -> None:
 
     verifier(len(bibliotheque.catalogue) == 3, "trois livres sont dans le catalogue")
     verifier(
-        [livre.titre for livre in bibliotheque.catalogue] == ["1984", "Dune", "Fondation"],
+        [livre.titre for livre in bibliotheque.catalogue]
+        == ["1984", "Dune", "Fondation"],
         "les titres du catalogue sont corrects",
     )
 
@@ -310,7 +316,9 @@ def main() -> None:
 
     afficher_section("Ré-emprunt après retour")
     membre2.emprunter(livre1)
-    verifier(not livre1.disponible, "un livre rendu peut être emprunté par un autre membre")
+    verifier(
+        not livre1.disponible, "un livre rendu peut être emprunté par un autre membre"
+    )
     verifier(
         titres_empruntes(membre2) == ["Fondation", "1984"],
         "le livre ré-emprunté apparaît chez Bob",

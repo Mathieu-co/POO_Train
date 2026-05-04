@@ -17,7 +17,7 @@ Ce projet permet de travailler :
 - `main.py` : contient tout le squelette de l'exercice (classes + zone de test).
 - `README.md` : consignes et guide de progression.
 
-## 🧱 Classes à compléter
+## 🧱 Classes
 
 Le fichier `main.py` contient 3 classes principales :
 
@@ -30,7 +30,7 @@ Représente un livre avec :
 - `isbn`
 - `disponible` (booléen)
 
-La méthode `afficher_infos()` est déjà fournie et retourne un résumé lisible du livre.
+La méthode `afficher_infos()` retourne un résumé lisible du livre.
 
 ### `Membre`
 
@@ -40,7 +40,7 @@ Représente un membre de la bibliothèque avec :
 - `nom`
 - `livres_empruntes` (liste de `Livre`)
 
-Méthodes à implémenter :
+Méthodes :
 
 - `emprunter(livre)`
 - `rendre(livre)`
@@ -53,7 +53,7 @@ Représente la bibliothèque avec :
 - `catalogue` (liste de `Livre`)
 - `membres` (liste de `Membre`)
 
-Méthodes à implémenter :
+Méthodes :
 
 - `ajouter_livre(livre)`
 - `inscrire_membre(membre)`
@@ -68,41 +68,13 @@ Prérequis : Python 3.10+ (le code utilise `Livre | None`).
 python main.py
 ```
 
-À ce stade, seul un test minimal est exécuté dans `main()`.
-
-## ✅ Plan de progression conseillé
-
-1. Implémenter `Membre.emprunter`.
-2. Implémenter `Membre.rendre`.
-3. Implémenter `Bibliotheque.ajouter_livre`.
-4. Implémenter `Bibliotheque.inscrire_membre`.
-5. Implémenter `Bibliotheque.trouver_livre_par_isbn`.
-6. Implémenter `Bibliotheque.afficher_catalogue`.
-7. Enrichir `main()` avec des scénarios de test.
-
-## 🧪 Exemples de scénarios à tester
-
-- Emprunt d'un livre disponible ✅
-- Emprunt d'un livre déjà emprunté ❌
-- Retour d'un livre emprunté ✅
-- Retour d'un livre non emprunté par le membre ❌
-- Recherche d'un livre existant par ISBN ✅
-- Recherche d'un ISBN inexistant ❌
-
-## 💡 Bonus (facultatif)
-
-- Empêcher l'ajout de deux livres avec le même ISBN.
-- Empêcher l'inscription de deux membres avec le même identifiant.
-- Ajouter des messages utilisateur clairs (`print`) pour chaque action.
-- Ajouter des tests unitaires (`unittest` ou `pytest`).
+Des tests de typage, cohérence et de structure sont exécutés dans `main()`.
 
 ## 📌 Idée d'amélioration
 
-Quand l'exercice de base est terminé, vous pouvez séparer le projet en modules :
+On peut séparé le projet en modules :
 
 - `models/livre.py`
 - `models/membre.py`
 - `models/bibliotheque.py`
 - `main.py`
-
-Cela vous préparera à des projets Python plus structurés.
